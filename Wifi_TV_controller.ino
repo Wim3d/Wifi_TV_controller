@@ -137,12 +137,12 @@ void callback(char* topic, byte * payload, unsigned int length) {
 
   // Switch on the LED if an 1 was received as first character
 
-  if ((char)topic[7] == 'p')      // check for the "p" of SonyTV/power
+  if ((char)topic[7] == 'p')      // check for the "p" of SonyTV/power in the MQTT topic
   {
-    //irsend.sendSony(0x290, 12, 3); // mute sound
+    //irsend.sendSony(0x290, 12, 3); // mute sound for testing the device
     irsend.sendSony(0xA90, 12, 3);
   }
-  if ((char)topic[10] == 'u')    // check for the "u" of SonyTV/volup
+  if ((char)topic[10] == 'u')    // check for the "u" of SonyTV/volup in the MQTT topic
   {
     irsend.sendSony(0x490, 12, 3);
     delay(100);
@@ -150,7 +150,7 @@ void callback(char* topic, byte * payload, unsigned int length) {
     delay(100);
     irsend.sendSony(0x490, 12, 3);
   }
-  if ((char)topic[10] == 'd')    // check for the "u" of SonyTV/volup
+  if ((char)topic[10] == 'd')    // check for the "u" of SonyTV/volup in the MQTT topic
   {
     irsend.sendSony(0xc90, 12, 3);
     delay(100);
@@ -176,14 +176,6 @@ boolean reconnect()
 
 void handleRoot() {
   httpServer.send(200, "text/html", SendHTML());
-  /*
-    String message = "Sonoff WimIOT\nDevice: ";
-    message += mqtt_id;
-    message += "\nSoftware version: ";
-    message += software_version;
-    message += "\nUpdatepath at http://[IP]/update";
-    httpServer.send(200, "text/plain", message);
-  */
 }
 void handle_OnConnect() {
   httpServer.send(200, "text/html", SendHTML());
