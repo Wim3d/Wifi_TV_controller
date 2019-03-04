@@ -140,7 +140,7 @@ void callback(char* topic, byte * payload, unsigned int length) {
   if ((char)topic[7] == 'p')      // check for the "p" of SonyTV/power in the MQTT topic
   {
     //irsend.sendSony(0x290, 12, 3); // mute sound for testing the device
-    irsend.sendSony(0xA90, 12, 3);
+    irsend.sendSony(0xA90, 12, 3); // change this for your TV brand 
   }
   if ((char)topic[10] == 'u')    // check for the "u" of SonyTV/volup in the MQTT topic
   {
